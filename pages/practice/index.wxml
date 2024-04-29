@@ -1,0 +1,11 @@
+<!--pages/practice/index.wxml-->
+<view class="practice-list">
+  <block wx:for="{{practices}}" wx:for-item="practice" wx:key="id">
+    <view class="practice-card" wx:if="{{practice !== null}}" data-practice-id="{{practice.id}}" bindtap="onClickPractice">
+      <image class="practice-cover-img" src="{{practice.coverImg}}" mode="aspectFit" />
+      <view class="practice-name">
+        <text>{{practice.name}}</text>
+      </view>
+    </view>
+  </block>
+</view>

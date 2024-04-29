@@ -1,0 +1,11 @@
+<!--pages/search/index.wxml-->
+<view class="char-list">
+  <block wx:for="{{chars}}" wx:for-item="char" wx:key="id">
+    <view class="char-card" wx:if="{{char !== null}}" data-char-id="{{char.id}}" bindtap="onClickChar">
+      <image class="char-img" src="{{char.stdImg}}" mode="aspectFit" />
+      <view class="char-name">
+        <text>{{char.name}}</text>
+      </view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,64 @@
+/* pages/user/index.wxss */
+page {
+  background-color: #e0f0e9;
+}
+
+.user-bar {
+  display: flex;
+  align-items: center;
+  height: 280rpx;
+  background-color: #f3f9f1;
+}
+
+.user-avatar {
+  width: 180rpx;
+  height: 180rpx;
+  margin-left: 60rpx;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  height: 160rpx;
+  margin-left: 60rpx;
+  margin-right: 60rpx;
+}
+
+.user-name {
+  flex: 1;
+  font-size: large;
+}
+
+.user-signature {
+  flex: 1;
+  font-size: small;
+}
+
+.practice-list {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  padding-bottom: 10rpx;
+}
+
+.practice-card {
+  display: flex;
+  align-items: center;
+  height: 240rpx;
+  margin-top: 10rpx;
+  border-radius: 20rpx;
+  background-color: white;
+}
+
+.practice-cover-img {
+  width: 200rpx;
+  height: 200rpx;
+  margin-left: 20rpx;
+}
+
+.practice-name {
+  display: flex;
+  align-items: center;
+  margin-left: 60rpx;
+  margin-right: 60rpx;
+  font-size: large;
+}

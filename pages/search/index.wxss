@@ -1,0 +1,35 @@
+/* pages/search/index.wxss */
+page {
+  background-color: #e0f0e9;
+}
+
+.char-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 20rpx;
+  padding-right: 10rpx;
+  padding-bottom: 10rpx;
+}
+
+.char-card {
+  flex: 0 0 calc(33.33% - 10rpx);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 280rpx;
+  margin-top: 10rpx;
+  margin-right: 10rpx;
+  border-radius: 20rpx;
+  background-color: white;
+}
+
+.char-img {
+  width: 200rpx;
+  height: 200rpx;
+  margin-top: 20rpx;
+}
+
+.char-name {
+  margin-top: 10rpx;
+  font-size: small;
+}
