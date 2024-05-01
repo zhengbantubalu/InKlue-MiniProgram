@@ -1,4 +1,4 @@
-/* pages/practice/index.wxss */
+/* pages/practice/practice.wxss */
 page {
   background-color: #e0f0e9;
 }

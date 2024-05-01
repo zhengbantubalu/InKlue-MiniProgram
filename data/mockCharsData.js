@@ -6,12 +6,15 @@ function mockGetCharDataById(id) {
   return mockCharsData.find((item) => item.id === id);
 }
 
-export function mockGetCharsData(args) {
-  let baseIdx = 0;
+export function mockGetCharsData(practiceId) {
   let length = 14;
   return new Array(length).fill(0).map(
-    (_, idx) => mockGetCharDataByIdx(idx + baseIdx)
+    (_, idx) => mockGetCharDataByIdx(idx)
   );
+}
+
+export function mockGetCharsDataByIds(ids) {
+  return ids.map(id => mockGetCharDataById(id));
 }
 
 let mockCharsData = [{

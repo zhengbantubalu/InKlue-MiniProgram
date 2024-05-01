@@ -1,0 +1,8 @@
+<!--pages/char_detail/char_detail.wxml-->
+<swiper class="swiper" indicator-dots="{{false}}" current="{{index}}">
+  <block wx:for="{{chars}}" wx:key="id">
+    <swiper-item>
+      <image class="swiper-image" src="{{item.stdImg}}" mode="aspectFit" />
+    </swiper-item>
+  </block>
+</swiper>

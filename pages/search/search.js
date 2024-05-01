@@ -1,7 +1,7 @@
-// pages/practice/index.js
+// pages/search/search.js
 
 import {
-  getPracticesData
+  getCharsData
 } from "../../data/api"
 
 Page({
@@ -10,16 +10,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    practices: []
+    chars: []
+  },
+
+  onClickCharDetail: function (event) {
+    let index = event.currentTarget.dataset.index;
+    wx.navigateTo({
+      url: "/pages/char_detail/char_detail?index=" + index
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let practices = getPracticesData();
+    let chars = getCharsData();
     this.setData({
-      practices
+      chars
     })
   },
 

@@ -1,7 +1,7 @@
-// pages/user/index.js
+// pages/user/user.js
 
 import {
-  getPracticesData
+  getRecordsData
 } from "../../data/api"
 
 Page({
@@ -13,11 +13,20 @@ Page({
     practices: []
   },
 
+  onClickPracticeDetail: function (event) {
+    let practiceId = event.currentTarget.dataset.practiceId;
+    if (practiceId) {
+      wx.navigateTo({
+        url: "/pages/practice_detail/practice_detail?practiceId=" + (((practiceId - 1) % 3) + 1)
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let practices = getPracticesData();
+    let practices = getRecordsData();
     this.setData({
       practices
     })

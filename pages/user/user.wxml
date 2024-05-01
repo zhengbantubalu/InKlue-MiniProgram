@@ -1,4 +1,4 @@
-<!--pages/user/index.wxml-->
+<!--pages/user/user.wxml-->
 <view class="user-bar">
   <image class="user-avatar" src="https://s21.ax1x.com/2024/04/29/pkFA9s0.png" />
   <view class="user-info">
@@ -12,10 +12,15 @@
 </view>
 <view class="practice-list">
   <block wx:for="{{practices}}" wx:for-item="practice" wx:key="id">
-    <view class="practice-card" wx:if="{{practice !== null}}" data-practice-id="{{practice.id}}" bindtap="onClickPractice">
+    <view class="practice-card" wx:if="{{practice !== null}}" data-practice-id="{{practice.id}}" bindtap="onClickPracticeDetail">
       <image class="practice-cover-img" src="{{practice.coverImg}}" mode="aspectFit" />
-      <view class="practice-name">
-        <text>{{practice.name}}</text>
+      <view class="practice-info">
+        <view class="practice-name">
+          <text>{{practice.name}}</text>
+        </view>
+        <view class="practice-time">
+          <text>{{practice.time}}</text>
+        </view>
       </view>
     </view>
   </block>

@@ -1,4 +1,4 @@
-/* pages/user/index.wxss */
+/* pages/user/user.wxss */
 page {
   background-color: #e0f0e9;
 }
@@ -55,10 +55,24 @@ page {
   margin-left: 20rpx;
 }
 
+.practice-info {
+  display: flex;
+  flex-direction: column;
+  height: 120rpx;
+  margin-left: 60rpx;
+  margin-right: 60rpx;
+}
+
 .practice-name {
   display: flex;
   align-items: center;
-  margin-left: 60rpx;
-  margin-right: 60rpx;
+  flex: 1;
   font-size: large;
+}
+
+.practice-time {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  font-size: small;
 }

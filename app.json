@@ -1,8 +1,10 @@
 {
   "pages": [
-    "pages/practice/index",
-    "pages/search/index",
-    "pages/user/index"
+    "pages/practice/practice",
+    "pages/search/search",
+    "pages/user/user",
+    "pages/practice_detail/practice_detail",
+    "pages/char_detail/char_detail"
   ],
   "tabBar": {
     "backgroundColor": "#f3f9f1",
@@ -11,19 +13,19 @@
     "selectedColor": "#057748",
     "list": [
       {
-        "pagePath": "pages/search/index",
+        "pagePath": "pages/search/search",
         "iconPath": "asserts/images/search.png",
         "selectedIconPath": "asserts/images/search-selected.png",
         "text": "搜索"
       },
       {
-        "pagePath": "pages/practice/index",
+        "pagePath": "pages/practice/practice",
         "iconPath": "asserts/images/practice.png",
         "selectedIconPath": "asserts/images/practice-selected.png",
         "text": "练习"
       },
       {
-        "pagePath": "pages/user/index",
+        "pagePath": "pages/user/user",
         "iconPath": "asserts/images/user.png",
         "selectedIconPath": "asserts/images/user-selected.png",
         "text": "我的"

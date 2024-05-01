@@ -1,7 +1,9 @@
-// pages/search/index.js
+// pages/char_detail/char_detail.js
 
 import {
-  getCharsData
+  getCharsData,
+  getCharsDataByIds,
+  getPracticeDataById
 } from "../../data/api"
 
 Page({
@@ -10,16 +12,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-    chars: []
+    chars: [],
+    index: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let chars = getCharsData();
+    let practiceId = options.practiceId;
+    let chars = [];
+    if (practiceId) {
+      let practice = getPracticeDataById(practiceId);
+      chars = getCharsDataByIds(practice.charIds);
+    } else {
+      chars = getCharsData();
+    }
+    let index = options.index;
+    console.log(index);
     this.setData({
-      chars
+      chars,
+      index
     })
   },
 
