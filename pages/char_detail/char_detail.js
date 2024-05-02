@@ -1,9 +1,9 @@
 // pages/char_detail/char_detail.js
 
 import {
-  getCharsData,
+  getPracticeDataById,
   getCharsDataByIds,
-  getPracticeDataById
+  getCharsData
 } from "../../data/api"
 
 Page({
@@ -29,7 +29,6 @@ Page({
       chars = getCharsData();
     }
     let index = options.index;
-    console.log(index);
     this.setData({
       chars,
       index

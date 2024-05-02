@@ -4,7 +4,9 @@
     "pages/search/search",
     "pages/user/user",
     "pages/practice_detail/practice_detail",
-    "pages/char_detail/char_detail"
+    "pages/char_detail/char_detail",
+    "pages/camera/camera",
+    "pages/confirm/confirm"
   ],
   "tabBar": {
     "backgroundColor": "#f3f9f1",

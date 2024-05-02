@@ -1,4 +1,4 @@
-<!--pages/practice_detail/practice_detail.wxml-->
+<!--pages/confirm/confirm.wxml-->
 <view class="char-list">
   <block wx:for="{{chars}}" wx:for-index="index" wx:for-item="char" wx:key="id">
     <view class="char-card" wx:if="{{char !== null}}" data-practice-id="{{practice.id}}" data-index="{{index}}" bindtap="onClickCharDetail">
@@ -12,6 +12,6 @@
 <view class="blank" />
 <view class="bottom-bar">
   <view class="button-start" bindtap="onClickStart">
-    <text class="button-text">拍摄</text>
+    <text class="button-text">确认</text>
   </view>
 </view>

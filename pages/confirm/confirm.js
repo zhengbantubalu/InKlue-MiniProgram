@@ -1,4 +1,4 @@
-// pages/practice_detail/practice_detail.js
+// pages/confirm/confirm.js
 
 import {
   getPracticeDataById,
@@ -16,19 +16,6 @@ Page({
     chars: []
   },
 
-  onClickCharDetail: function (event) {
-    let index = event.currentTarget.dataset.index;
-    wx.navigateTo({
-      url: "/pages/char_detail/char_detail?practiceId=" + this.data.practiceId + "&index=" + index
-    })
-  },
-
-  onClickStart: function (event) {
-    wx.navigateTo({
-      url: "/pages/camera/camera?practiceId=" + this.data.practiceId
-    })
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -36,6 +23,13 @@ Page({
     let practiceId = options.practiceId;
     let practice = getPracticeDataById(practiceId);
     let chars = getCharsDataByIds(practice.charIds);
+    let photos = wx.getStorageSync("photos");
+    for (let i = 0; i < chars.length; i++) {
+      console.log(chars[i].stdImg);
+      console.log(photos[i]);
+      chars[i].stdImg = photos[i];
+    }
+    console.log(chars);
     this.setData({
       practiceId,
       practice,
