@@ -2,7 +2,7 @@
 
 import {
   getPracticeDataById,
-  getCharsDataByIds
+  getStdCharsDataByIds
 } from "../../data/api"
 
 Page({
@@ -14,6 +14,7 @@ Page({
     practiceId: "",
     chars: [],
     photos: [],
+    aboveImg: "",
     index: 0
   },
 
@@ -29,7 +30,11 @@ Page({
             photos,
             index: this.data.index + 1
           })
-          if (this.data.index == this.data.chars.length) {
+          if (this.data.index < this.data.chars.length) {
+            this.setData({
+              aboveImg: this.data.chars[this.data.index].pngImg
+            })
+          } else {
             wx.setStorageSync("photos", this.data.photos);
             wx.getStorageInfo({
               success(res) {
@@ -54,16 +59,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let practiceId = options.practiceId;
-    let chars = [];
-    if (practiceId) {
-      let practice = getPracticeDataById(practiceId);
-      chars = getCharsDataByIds(practice.charIds);
-    }
     this.setData({
-      practiceId,
-      chars
+      practiceId: options.practiceId
     })
+    if (this.data.practiceId) {
+      getPracticeDataById(this.data.practiceId, (practice) => {
+        this.setData({
+          practice
+        })
+        getStdCharsDataByIds(this.data.practice.charIds, (chars) => {
+          this.setData({
+            chars,
+            aboveImg: chars[0].pngImg
+          })
+        })
+      })
+    }
   },
 
   /**

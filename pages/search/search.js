@@ -1,7 +1,7 @@
 // pages/search/search.js
 
 import {
-  getCharsData
+  getStdCharsData
 } from "../../data/api"
 
 Page({
@@ -13,7 +13,7 @@ Page({
     chars: []
   },
 
-  onClickCharDetail: function (event) {
+  onClickCharDetail(event) {
     let index = event.currentTarget.dataset.index;
     wx.navigateTo({
       url: "/pages/char_detail/char_detail?index=" + index
@@ -24,9 +24,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let chars = getCharsData();
-    this.setData({
-      chars
+    getStdCharsData((chars) => {
+      this.setData({
+        chars
+      })
     })
   },
 

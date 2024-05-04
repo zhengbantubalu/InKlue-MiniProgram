@@ -2,7 +2,7 @@
 
 import {
   getPracticeDataById,
-  getCharsDataByIds
+  getStdCharsDataByIds
 } from "../../data/api"
 
 Page({
@@ -20,20 +20,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let practiceId = options.practiceId;
-    let practice = getPracticeDataById(practiceId);
-    let chars = getCharsDataByIds(practice.charIds);
     let photos = wx.getStorageSync("photos");
-    for (let i = 0; i < chars.length; i++) {
-      console.log(chars[i].stdImg);
-      console.log(photos[i]);
-      chars[i].stdImg = photos[i];
-    }
-    console.log(chars);
     this.setData({
-      practiceId,
-      practice,
-      chars
+      practiceId: options.practiceId
+    })
+    getPracticeDataById(this.data.practiceId, (practice) => {
+      this.setData({
+        practice
+      })
+      wx.setNavigationBarTitle({
+        title: this.data.practice.name
+      })
+      getStdCharsDataByIds(this.data.practice.charIds, (chars) => {
+        for (let i = 0; i < chars.length; i++) {
+          chars[i].stdImg = photos[i];
+        }
+        this.setData({
+          chars
+        })
+      })
     })
   },
 

@@ -13,7 +13,7 @@ Page({
     practices: []
   },
 
-  onClickPracticeDetail: function (event) {
+  onClickPracticeDetail(event) {
     let practiceId = event.currentTarget.dataset.practiceId;
     if (practiceId) {
       wx.navigateTo({
@@ -26,9 +26,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let practices = getPracticesData();
-    this.setData({
-      practices
+    getPracticesData((practices) => {
+      this.setData({
+        practices
+      })
     })
   },
 

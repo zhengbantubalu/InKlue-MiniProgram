@@ -1,7 +1,8 @@
-// pages/user/user.js
+// pages/practice_detail/practice_detail.js
 
 import {
-  getRecordsData
+  getRecordDataById,
+  getCharsDataByIds
 } from "../../data/api"
 
 Page({
@@ -10,25 +11,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-    practices: []
+    practiceId: "",
+    practice: {},
+    chars: []
   },
 
-  onClickPracticeDetail(event) {
-    let practiceId = event.currentTarget.dataset.practiceId;
-    if (practiceId) {
-      wx.navigateTo({
-        url: "/pages/record_detail/record_detail?practiceId=" + practiceId
-      })
-    }
+  onClickCharDetail(event) {
+    let index = event.currentTarget.dataset.index;
+    wx.navigateTo({
+      url: "/pages/char_detail/char_detail?practiceId=" + this.data.practiceId + "&index=" + index
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    getRecordsData((practices) => {
+    this.setData({
+      practiceId: options.practiceId
+    })
+    getRecordDataById(this.data.practiceId, (practice) => {
       this.setData({
-        practices
+        practice
+      })
+      wx.setNavigationBarTitle({
+        title: this.data.practice.name
+      })
+      getCharsDataByIds(this.data.practice.charIds, (chars) => {
+        this.setData({
+          chars
+        })
       })
     })
   },

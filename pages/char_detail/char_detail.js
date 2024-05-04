@@ -2,8 +2,9 @@
 
 import {
   getPracticeDataById,
-  getCharsDataByIds,
-  getCharsData
+  getRecordDataById,
+  getStdCharsDataByIds,
+  getStdCharsData
 } from "../../data/api"
 
 Page({
@@ -20,19 +21,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let practiceId = options.practiceId;
-    let chars = [];
-    if (practiceId) {
-      let practice = getPracticeDataById(practiceId);
-      chars = getCharsDataByIds(practice.charIds);
-    } else {
-      chars = getCharsData();
-    }
-    let index = options.index;
     this.setData({
-      chars,
-      index
+      practiceId: options.practiceId
     })
+    if (this.data.practiceId) {
+      getPracticeDataById(this.data.practiceId, (practice) => {
+        this.setData({
+          practice
+        })
+        getStdCharsDataByIds(this.data.practice.charIds, (chars) => {
+          this.setData({
+            chars,
+            index: options.index
+          })
+        })
+      })
+    } else {
+      getStdCharsData((chars) => {
+        this.setData({
+          chars,
+          index: options.index
+        })
+      })
+    }
   },
 
   /**

@@ -1,0 +1,4 @@
+/* pages/practice_detail/practice_detail.wxss */
+page {
+  background-color: #e0f0e9;
+}

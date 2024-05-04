@@ -12,7 +12,7 @@
 </view>
 <view class="practice-list">
   <block wx:for="{{practices}}" wx:for-item="practice" wx:key="id">
-    <view class="practice-card" wx:if="{{practice !== null}}" data-practice-id="{{practice.id}}" bindtap="onClickPracticeDetail">
+    <view class="practice-card" wx:if="{{practice !== null}}" data-practice-id="{{practice._id}}" bindtap="onClickPracticeDetail">
       <image class="practice-cover-img" src="{{practice.coverImg}}" mode="aspectFit" />
       <view class="practice-info">
         <view class="practice-name">

@@ -2,7 +2,7 @@
 
 import {
   getPracticeDataById,
-  getCharsDataByIds
+  getStdCharsDataByIds
 } from "../../data/api"
 
 Page({
@@ -16,14 +16,14 @@ Page({
     chars: []
   },
 
-  onClickCharDetail: function (event) {
+  onClickCharDetail(event) {
     let index = event.currentTarget.dataset.index;
     wx.navigateTo({
       url: "/pages/char_detail/char_detail?practiceId=" + this.data.practiceId + "&index=" + index
     })
   },
 
-  onClickStart: function (event) {
+  onClickStart() {
     wx.navigateTo({
       url: "/pages/camera/camera?practiceId=" + this.data.practiceId
     })
@@ -33,13 +33,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let practiceId = options.practiceId;
-    let practice = getPracticeDataById(practiceId);
-    let chars = getCharsDataByIds(practice.charIds);
     this.setData({
-      practiceId,
-      practice,
-      chars
+      practiceId: options.practiceId
+    })
+    getPracticeDataById(this.data.practiceId, (practice) => {
+      this.setData({
+        practice
+      })
+      wx.setNavigationBarTitle({
+        title: this.data.practice.name
+      })
+      getStdCharsDataByIds(this.data.practice.charIds, (chars) => {
+        this.setData({
+          chars
+        })
+      })
     })
   },
 

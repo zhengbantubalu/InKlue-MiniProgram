@@ -1,4 +1,4 @@
-<!--pages/search/search.wxml-->
+<!--pages/practice_detail/practice_detail.wxml-->
 <view class="char-list">
   <block wx:for="{{chars}}" wx:for-index="index" wx:for-item="char" wx:key="id">
     <view class="char-card" wx:if="{{char !== null}}" data-practice-id="{{practice._id}}" data-index="{{index}}" bindtap="onClickCharDetail">

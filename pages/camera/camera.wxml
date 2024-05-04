@@ -1,6 +1,7 @@
 <!--pages/camera/camera.wxml-->
 <view class="camera-container">
   <camera class="camera" device-position="back" flash="off" />
+  <image class="above-img" src="{{aboveImg}}" />
 </view>
 <view class="bottom-bar">
   <view class="button-shot" bindtap="onClickShot" />
