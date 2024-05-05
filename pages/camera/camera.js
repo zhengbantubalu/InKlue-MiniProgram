@@ -21,7 +21,7 @@ Page({
   onClickShot() {
     if (this.data.index < this.data.chars.length) {
       wx.createCameraContext().takePhoto({
-        quality: "medium",
+        quality: "low",
         success: (res) => {
           let tempFilePath = res.tempImagePath;
           let photos = this.data.photos;
@@ -36,16 +36,6 @@ Page({
             })
           } else {
             wx.setStorageSync("photos", this.data.photos);
-            wx.getStorageInfo({
-              success(res) {
-                console.log(res.keys)
-                console.log(res.currentSize)
-                console.log(res.limitSize)
-              }
-            });
-            for (let i = 0; i < this.data.photos.length; i++) {
-              console.log(this.data.photos[i])
-            }
             wx.redirectTo({
               url: "/pages/confirm/confirm?practiceId=" + this.data.practiceId
             })

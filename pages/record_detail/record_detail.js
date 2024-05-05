@@ -2,7 +2,7 @@
 
 import {
   getRecordDataById,
-  getCharsDataByIds
+  getWrittenCharsDataByIds
 } from "../../data/api"
 
 Page({
@@ -11,16 +11,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    practiceId: "",
-    practice: {},
+    recordId: "",
+    record: {},
     chars: []
-  },
-
-  onClickCharDetail(event) {
-    let index = event.currentTarget.dataset.index;
-    wx.navigateTo({
-      url: "/pages/char_detail/char_detail?practiceId=" + this.data.practiceId + "&index=" + index
-    })
   },
 
   /**
@@ -28,16 +21,16 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      practiceId: options.practiceId
+      recordId: options.recordId
     })
-    getRecordDataById(this.data.practiceId, (practice) => {
+    getRecordDataById(this.data.recordId, (record) => {
       this.setData({
-        practice
+        record
       })
       wx.setNavigationBarTitle({
-        title: this.data.practice.name
+        title: this.data.record.name
       })
-      getCharsDataByIds(this.data.practice.charIds, (chars) => {
+      getWrittenCharsDataByIds(this.data.record.charIds, (chars) => {
         this.setData({
           chars
         })

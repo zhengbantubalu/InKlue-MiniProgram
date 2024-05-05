@@ -2,7 +2,8 @@
 
 import {
   getPracticeDataById,
-  getStdCharsDataByIds
+  getStdCharsDataByIds,
+  setRecordData
 } from "../../data/api"
 
 Page({
@@ -13,7 +14,48 @@ Page({
   data: {
     practiceId: "",
     practice: {},
-    chars: []
+    chars: [],
+    buttonEnable: false
+  },
+
+  async onClickStart() {
+    // 按钮锁
+    if (!this.data.buttonEnable) {
+      return;
+    }
+    this.setData({
+      buttonEnable: false
+    })
+    // 显示等待信息
+    wx.showToast({
+      title: "上传中，请稍候",
+      icon: "loading",
+      duration: 2000
+    })
+    // 上传图像文件
+    const openid = wx.getStorageSync("openid");
+    for (let i = 0; i < this.data.chars.length; i++) {
+      const timestamp = new Date().getTime();
+      const res = await wx.cloud.uploadFile({
+        cloudPath: "written-char/" + openid + "_" + timestamp + "_" + this.data.chars[i].name + ".jpg",
+        filePath: this.data.chars[i].writtenImg
+      })
+      this.data.chars[i].writtenImg = res.fileID;
+    }
+    // 获取时间字符串
+    const now = new Date();
+    const time = `${now.getFullYear()}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getDate().toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
+    // 设置记录数据
+    await setRecordData({
+      name: this.data.practice.name,
+      coverImg: this.data.practice.coverImg,
+      chars: this.data.chars,
+      time
+    });
+    // 跳转到“我的”页面
+    wx.reLaunch({
+      url: '/pages/user/user'
+    });
   },
 
   /**
@@ -33,10 +75,11 @@ Page({
       })
       getStdCharsDataByIds(this.data.practice.charIds, (chars) => {
         for (let i = 0; i < chars.length; i++) {
-          chars[i].stdImg = photos[i];
+          chars[i].writtenImg = photos[i];
         }
         this.setData({
-          chars
+          chars,
+          buttonEnable: true
         })
       })
     })

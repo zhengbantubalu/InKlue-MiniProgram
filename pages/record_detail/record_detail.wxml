@@ -2,7 +2,7 @@
 <view class="char-list">
   <block wx:for="{{chars}}" wx:for-index="index" wx:for-item="char" wx:key="id">
     <view class="char-card" wx:if="{{char !== null}}" data-practice-id="{{practice._id}}" data-index="{{index}}" bindtap="onClickCharDetail">
-      <image class="char-img" src="{{char.stdImg}}" mode="aspectFit" />
+      <image class="char-img" src="{{char.writtenImg}}" mode="aspectFit" />
       <view class="char-name">
         <text>{{char.name}}</text>
       </view>
